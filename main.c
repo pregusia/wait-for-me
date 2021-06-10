@@ -220,7 +220,7 @@ void on_signal(int sig) {
 }
 
 void print_usage(char* appName) {
-    fprintf(stderr,"%s [-v] <-s [-h 0.0.0.0] | -c -h host> -p PORT [TEXT|\"READY\"]\n", appName);
+    fprintf(stderr,"%s [-v] <-s [-h 0.0.0.0] | -c -h host> [-p PORT=9999] [TEXT|\"READY\"]\n", appName);
 }
 
 int main(int argc, char** argv) {

@@ -1,9 +1,9 @@
 # wait-for-me
-Small program useful in synchronization
+Small program useful in (container) synchronization
 
 Usage
 --------------------------
-```./wait-for-me [-v] <-s [-h 0.0.0.0] | -c -h host> [-p PORT|9999] [TEXT|"READY"]```
+```./wait-for-me [-v] <-s [-h 0.0.0.0] | -c -h host> [-p PORT=9999] [TEXT|"READY"]```
 
 Server:
 ```./wait-for-me -s```
