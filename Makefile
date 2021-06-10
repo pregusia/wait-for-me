@@ -1,7 +1,7 @@
 .PHONY: musl
 
 all:
-	cc -O3 -s -o wait-for-me main.cc
+	cc -O3 -s -o wait-for-me main.c
 
 musl:
 	musl/build.musl.sh

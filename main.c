@@ -46,8 +46,8 @@ volatile int g_running;
 volatile int g_quiet;
 volatile int g_abort;
 
-sockaddr_in net_resolve_addr(char* host, int port) {
-    sockaddr_in res = { 0 };
+struct sockaddr_in net_resolve_addr(char* host, int port) {
+    struct sockaddr_in res = { 0 };
     res.sin_family = AF_INET;
     res.sin_port = htons(port);
 
@@ -56,9 +56,9 @@ sockaddr_in net_resolve_addr(char* host, int port) {
         return res;
     }
 
-    hostent* he = gethostbyname(host);
+    struct hostent* he = gethostbyname(host);
     if (he != NULL) {
-        in_addr** addr_list = (in_addr**)he->h_addr_list;
+        struct in_addr** addr_list = (struct in_addr**)he->h_addr_list;
         if (addr_list[0] != NULL) {
             res.sin_addr = *addr_list[0];
             return res;
@@ -86,7 +86,7 @@ int net_connect(char* host, int port) {
         exit(1);
     }
 
-    res = connect(fd, (struct sockaddr*)&addr, sizeof(sockaddr_in));
+    res = connect(fd, (struct sockaddr*)&addr, sizeof(struct sockaddr_in));
     if (res < 0) {
         close(fd);
         return -1;
@@ -149,7 +149,7 @@ int start_server(char* host, int port, char* text) {
         return 1;
     }
 
-    if (bind(server_fd,(sockaddr*) &addr,sizeof(sockaddr_in)) != 0) {
+    if (bind(server_fd,(struct sockaddr*) &addr,sizeof(struct sockaddr_in)) != 0) {
         close(server_fd);
         perror("bind");
         return 1;
@@ -229,9 +229,9 @@ int main(int argc, char** argv) {
     int conf_port;
     int mode_server = 0;
     int mode_client = 0;
-    char const *default_host = "0.0.0.0";
-    char const *default_text = "READY";
-    int const default_port = 9999;
+    char *default_host = "0.0.0.0";
+    char *default_text = "READY";
+    int default_port = 9999;
 
     g_running = 0;
     g_abort = 0;

@@ -4,4 +4,4 @@ COPY . /build/
 WORKDIR /build
 #
 RUN mkdir /output &&\
- gcc -o /output/wait-for-me -O3 -s -static main.cc
+ gcc -o /output/wait-for-me -O3 -s -static main.c
